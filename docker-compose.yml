@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  analyze:
+    build: .
+    volume:
+      - ${pwd}:/data/foreground
+      - ${pwd}:/data/background
