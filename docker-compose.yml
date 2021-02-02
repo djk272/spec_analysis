@@ -3,5 +3,4 @@ services:
   analyze:
     build: .
     volume:
-      - ${pwd}:/data/foreground
-      - ${pwd}:/data/background
+      - data/:/data
