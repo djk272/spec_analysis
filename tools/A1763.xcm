@@ -1,0 +1,55 @@
+data /home/david/A1763_DK2020/A1763_DK2020/data_prep/3591/repro/ds9_grp.pi /home/david/A1763_DK2020/A1763_DK2020/data_prep/20590/repro/ds9_grp.pi /home/david/A1763_DK2020/A1763_DK2020/data_prep/22130/repro/ds9_grp.pi /home/david/A1763_DK2020/A1763_DK2020/data_prep/22136/repro/ds9_grp.pi /home/david/A1763_DK2020/A1763_DK2020/data_prep/22137/repro/ds9_grp.pi
+
+save all xautosav.xcm
+
+corfile /home/david/A1763_DK2020/A1763_DK2020/data_prep/3591/repro/ds9_bkg.pi /home/david/A1763_DK2020/A1763_DK2020/data_prep/20590/repro/ds9_bkg.pi /home/david/A1763_DK2020/A1763_DK2020/data_prep/22130/repro/ds9_bkg.pi /home/david/A1763_DK2020/A1763_DK2020/data_prep/22136/repro/ds9_bkg.pi /home/david/A1763_DK2020/A1763_DK2020/data_prep/22137/repro/ds9_bkg.pi
+
+save all xautosav.xcm
+
+cornorm 1 -0.15217
+
+save all xautosav.xcm
+
+cornorm 2 -0.15217
+
+save all xautosav.xcm
+
+cornorm 3 -0.15217
+
+save all xautosav.xcm
+
+cornorm 4 -0.15217
+
+save all xautosav.xcm
+
+cornorm 5 -0.15217
+
+save all xautosav.xcm
+
+cpd /xw
+
+save all xautosav.xcm
+
+plot ldata
+
+save all xautosav.xcm
+
+setplot energy
+
+save all xautosav.xcm
+
+ignore 1-5: **-0.7 7.0-**
+
+save all xautosav.xcm
+
+plot ldata
+
+save all xautosav.xcm
+
+abund grsa
+
+save all xautosav.xcm
+
+model phabs*apec
+
+save all xautosav.xcm
