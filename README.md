@@ -9,3 +9,9 @@ This is the automation of analyzing multiple spectra of galaxy clusters from X-r
 
 ## Notes
 https://docs.python-guide.org/writing/structure/
+
+https://cda.harvard.edu/chaser/mainEntry.do
+
+https://heasarc.gsfc.nasa.gov/lheasoft/ubuntu.html
+
+https://cxc.cfa.harvard.edu/ciao/download/custom.html
