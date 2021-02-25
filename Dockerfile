@@ -11,4 +11,4 @@ RUN pip install --upgrade pip
 RUN pip install -r dependencies.txt
 COPY ciao-install .
 RUN bash ciao-install 
-CMD ["python", "./v2fits.py"]
+#CMD ["python", "./v2fits.py"]
