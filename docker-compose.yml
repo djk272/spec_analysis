@@ -2,12 +2,14 @@ version: "3.9"
 services: #list ur docker services here
   heasoft-service:
     image: chbrandt/heasoft:latest #using avalible heasoft image
+    restart: always
     volume:
-      -data/:/data #map volume of host dir -> container dir
+      - ./data/:/data #map volume of host dir -> container dir
 
   ciao-service:
       build: . #tell docker to build the first docker file and where it is
+      restart: always
       volume:
-        - data/:/data #map volume of host dir -> container dir
+        - ./data/:/data #map volume of host dir -> container dir
       depends-on:
         - heasoft-service  
