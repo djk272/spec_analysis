@@ -48,14 +48,15 @@ specex_filename = "spec"
 file_ext = ".reg"
 specex_ext = ".sh"
 filepath = os.getcwd() 
+data_path = "/usr/src/astro/spec_analysis/data/"
 
 ##-- Circle Stuff --##
 
 
-hdulist = fits.open('A1763_img5_exp.fits') # Raw foreground file #bin1_imgALL_cts_filth.fits #A1763_img5_exp.fits
+hdulist = fits.open(str(data_path)+'A1763_img5_exp.fits') # Raw foreground file #bin1_imgALL_cts_filth.fits #A1763_img5_exp.fits
 imgf = hdulist[0].data # Relevant slice of foreground from the file
 
-hdulist2 = fits.open('A1763_bg5_exp.fits') # Raw background file #bin1_bg_imgN_expN.fits #A1763_bg5_exp.fits
+hdulist2 = fits.open(str(data_path)+'A1763_bg5_exp.fits') # Raw background file #bin1_bg_imgN_expN.fits #A1763_bg5_exp.fits
 imgbg = hdulist2[0].data # Relevant slice of background from the file
 
 
@@ -113,7 +114,7 @@ counts = 0 # Initialize foreground counts
 bkg_counts = 0 # Initialize backgroundground counts
 SNR = 0 # Initialize signal to noise ratio
 
-specex_file = open(str(filepath)+"/"+str(specex_filename)+str(specex_ext),"a") # Opening a file to write specextract code 
+specex_file = open(str(data_path)+"/"+str(specex_filename)+str(specex_ext),"a") # Opening a file to write specextract code 
 
 #write_specex_file("punlearn specextract") # This string will be at the start of the file
 
@@ -124,8 +125,8 @@ specex_file = open(str(filepath)+"/"+str(specex_filename)+str(specex_ext),"a") #
 print("Start of big while loop")
 while r1 < bs2:
   i += 1 # Will add 1 to each iteration, used for naming files "file1.reg, file2.reg,... fileN.reg"
-  annuli_file = open(str(filepath)+"/"+str(filename)+str(i)+str(file_ext),"w") # Opening a file to write each found annulus
-  final_annuli_file = open(str(filepath)+"/"+str(filename)+str(file_ext),"a") # Opening a file to write all found annuli 
+  annuli_file = open(str(data_path)+"/"+str(filename)+str(i)+str(file_ext),"w") # Opening a file to write each found annulus
+  final_annuli_file = open(str(data_path)+"/"+str(filename)+str(file_ext),"a") # Opening a file to write all found annuli 
   
   
   print("SNR at the start: "+ str(SNR))
@@ -192,7 +193,7 @@ while r1 < bs2:
      
      
 
-     line1 = "#"+str(filename)+str(i)+"\n"+"punlearn specextract"+"specextract infile="+'"'+str(obs_id[0])+'_evt2'+'.fits[sky=region('+str(filename)+str(i)+str(file_ext)+')]"'+" outroot="+str(obs_id[0])+"_ann"+str(i)+" bkgfile="+'"../bkgrnd/merge_bg_RP.fits[sky=region('+str(filename)+str(i)+str(file_ext)+'.reg)]"' + " grouptype=NUM_CTS binspec=20 bkgresp=no clobber=yes verbose=1"
+     line1 = "#"+str(data_path)+str(i)+"\n"+"punlearn specextract"+"specextract infile="+'"'+str(obs_id[0])+'_evt2'+'.fits[sky=region('+str(filename)+str(i)+str(file_ext)+')]"'+" outroot="+str(obs_id[0])+"_ann"+str(i)+" bkgfile="+'"../bkgrnd/merge_bg_RP.fits[sky=region('+str(filename)+str(i)+str(file_ext)+'.reg)]"' + " grouptype=NUM_CTS binspec=20 bkgresp=no clobber=yes verbose=1"
      line2 = "punlearn specextract"+"specextract infile="+'"'+str(obs_id[1])+'_evt2'+'.fits[sky=region('+str(filename)+str(i)+str(file_ext)+')]"'+" outroot="+str(obs_id[1])+"_ann"+str(i)+" bkgfile="+'"../bkgrnd/merge_bg_RP.fits[sky=region('+str(filename)+str(i)+str(file_ext)+'.reg)]"' + " grouptype=NUM_CTS binspec=20 bkgresp=no clobber=yes verbose=1"
      line3 = "punlearn specextract"+"specextract infile="+'"'+str(obs_id[2])+'_evt2'+'.fits[sky=region('+str(filename)+str(i)+str(file_ext)+')]"'+" outroot="+str(obs_id[2])+"_ann"+str(i)+" bkgfile="+'"../bkgrnd/merge_bg_RP.fits[sky=region('+str(filename)+str(i)+str(file_ext)+'.reg)]"' + " grouptype=NUM_CTS binspec=20 bkgresp=no clobber=yes verbose=1"
      line4 = "punlearn specextract"+"specextract infile="+'"'+str(obs_id[3])+'_evt2'+'.fits[sky=region('+str(filename)+str(i)+str(file_ext)+')]"'+" outroot="+str(obs_id[3])+"_ann"+str(i)+" bkgfile="+'"../bkgrnd/merge_bg_RP.fits[sky=region('+str(filename)+str(i)+str(file_ext)+'.reg)]"' + " grouptype=NUM_CTS binspec=20 bkgresp=no clobber=yes verbose=1"

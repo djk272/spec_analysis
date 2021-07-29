@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #make aliases avalible
-shopt -s expand_aliases
-source ~/.bash_profile
+#shopt -s expand_aliases
+#source ~/.bash_profile
 
 #start ciao
-ciao
+#ciao
 
 #start heasoft
-heainit
+#heainit
 
 #data prep
 echo "Running data_prep ..."

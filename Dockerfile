@@ -1,29 +1,21 @@
-FROM python:latest #getting most current python image
+FROM python:latest
 
-RUN mkdir /usr/src/astro
+RUN mkdir -p /usr/src/astro/spec_analysis/tools
 
-WORKDIR /usr/src/astro
+WORKDIR /usr/src/astro/spec_analysis/tools
 
 #COPY A1763_img5_exp.fits .
 #COPY A1763_bg5_exp.fits .
-COPY ./tools/v2fits.py .
+COPY ./tools .
 COPY requirements.txt .
-COPY ./tools/fl_cha_repro.sh .
-COPY ./tools/fl_lightcurve.sh .
-COPY ./tools/fl_back7.sh .
-COPY ./tools/fl_fluximage_new.sh .
-COPY ./tools/fl_bkchipreg77.sh .
-COPY ./tools/fl_fluximage_ccd_hard.sh .    
-COPY ./tools/fl_hard_cornorm.sh .
-COPY ./tools/fl_imgall_new.sh .
-COPY ./tools/fl_wavedetect_new.sh .
-COPY ./tools/python fl_dmfilth.py .
-COPY ./tools/fl_dmfilth.sh .
-COPY ./tools/data_prep.sh .
+
 
 RUN pip install --upgrade pip
-RUN pip install -r dependencies.txt
-COPY ciao-install .
-RUN ciao-install 
-RUN data_prep.sh
+RUN pip install -r requirements.txt
+#COPY /tools/ciao-install .
+CMD ["ciao-install"]
+CMD ["data_prep.sh"]
 CMD ["python", "./v2fits.py"]
+
+
+#Docker is not using my changes when updating my cwd path why? Causing the fits file not to be found
