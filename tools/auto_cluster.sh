@@ -12,7 +12,7 @@ heainit
 
 #data prep
 echo "Running data_prep ..."
-. data_prep.sh
+. data_prep/data_prep.sh
 
 #find regions
 echo "Running v2fits ..."

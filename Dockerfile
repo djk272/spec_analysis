@@ -14,8 +14,11 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 #COPY /tools/ciao-install .
 CMD ["ciao-install"]
-CMD ["data_prep.sh"]
+CMD ["bash", "/data_prep/data_prep.sh"]
 CMD ["python", "./v2fits.py"]
+CMD ["bash", "specextract"]
+CMD ["bash", "spec.sh"]
+CMD ["bash", "xspec" "- A1763.xcm"]
 
 
 #Docker is not using my changes when updating my cwd path why? Causing the fits file not to be found
