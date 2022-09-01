@@ -25,7 +25,7 @@ def write_file(string): # Function to write output to file
 ##########################################################################
 
 ##########################################################################
-def write_big_file(string): # Function to write all outputs to  one file
+def write_big_file(string): # Function to write all outputs to one file
   try:
     final_annuli_file.write(str(string)+"\n")
   except:
@@ -114,9 +114,9 @@ counts = 0 # Initialize foreground counts
 bkg_counts = 0 # Initialize backgroundground counts
 SNR = 0 # Initialize signal to noise ratio
 
-specex_file = open(str(data_path)+"/out"+"/"+str(specex_filename)+str(specex_ext),"a") # Opening a file to write specextract code 
+specex_file = open(str(data_path)+"out/"+str(specex_filename)+str(specex_ext),"a") # Opening a file to write specextract code 
 
-#write_specex_file("punlearn specextract") # This string will be at the start of the file
+write_specex_file("punlearn specextract") # This string will be at the start of the file
 
 
 ############################################################################################################################
@@ -125,8 +125,8 @@ specex_file = open(str(data_path)+"/out"+"/"+str(specex_filename)+str(specex_ext
 print("Start of big while loop")
 while r1 < bs2:
   i += 1 # Will add 1 to each iteration, used for naming files "file1.reg, file2.reg,... fileN.reg"
-  annuli_file = open(str(data_path)+"/out"+"/"+str(filename)+str(i)+str(file_ext),"w") # Opening a file to write each found annulus
-  final_annuli_file = open(str(data_path)+"/out"+"/"+str(filename)+str(file_ext),"a") # Opening a file to write all found annuli 
+  annuli_file = open(str(data_path)+"out/"+str(filename)+str(i)+str(file_ext),"w") # Opening a file to write each found annulus
+  final_annuli_file = open(str(data_path)+"out/"+str(filename)+str(file_ext),"a") # Opening a file to write all found annuli 
   
   
   print("SNR at the start: "+ str(SNR))
