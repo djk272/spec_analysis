@@ -11,12 +11,12 @@
 #heainit
 
 #data prep
-echo "Running data_prep ..."
-. data_prep.sh
+# echo "Running data_prep ..."
+# . data_prep.sh
 
-#find regions
-echo "Running v2fits ..."
-python3 v2fits.py
+# #find regions
+# echo "Running v2fits ..."
+# python3 v2fits.py
 
 #spectral analysis
 echo "Running spec_analysis"
