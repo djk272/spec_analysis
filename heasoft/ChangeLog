@@ -1,0 +1,59 @@
+2022-04-11 HEASARC Software
+
+	* v0.8
+	* All Dockerfiles: Updated version for HEASoft 6.30.1
+	* All Dockerfiles: Additional Python packages needed for
+		 Ubuntu 22.04
+
+2022-03-10 HEASARC Software
+
+	* v0.7
+	* All Dockerfiles: Updated for 6.30 release
+
+2021-11-02 HEASARC Software
+
+	* v0.6.1
+	* "a la carte" Dockerfile: Fixed xspec data path
+
+2021-07-15 HEASARC Software
+
+	* v0.6
+	* All Dockerfiles: heasoftpy is now (optionally) included in
+		 downloads; separate install here is dropped.
+	* All Dockerfiles: Silenced verbose tar command
+
+2021-04-09 HEASARC Software
+
+	* v0.5
+	* All Dockerfiles: Adjusted for new installed Xspec
+		 header file structure released with HEASoft 6.29
+
+2021-02-08 HEASARC Software
+
+	* v0.4
+	* Complete Dockerfiles: Combined wget & build sections into
+		 a single RUN layer to free up space
+
+2021-02-05 HEASARC Software
+
+	* v0.3
+	* Complete Dockerfile: Added "make clean" & rm of Xspec/src/spectral
+	* Complete Dockerfile_example: Added rm of all src code
+
+2021-02-01 HEASARC Software
+
+	* v0.2
+	* All Dockerfiles: Added install of HEASoftPy
+	* Dockerfile_example: Example Dockerfile for full distribution
+		that adds in extra Python packages and vim
+	* README: Added clarifications + new text about editing
+		Dockerfiles, preserving changes, and cleaning up.
+
+2021-01-28 HEASARC Software
+
+	* v0.1
+	* All Dockerfiles: Added install of numpy and python-is-python3
+
+2021-01-21 HEASARC Software
+
+	* Initial distribution

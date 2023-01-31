@@ -1,0 +1,241 @@
+HEASoft & Docker:
+=================
+
+What is Docker?
+
+To learn all about Docker, please visit https://www.docker.com.
+
+For our purposes, Docker enables packaging HEASoft as a
+standalone executable container that includes everything
+needed to run HEASoft: the code, the system tools and
+libraries, and the settings.
+
+The primary benefit for HEASoft users is that it allows for
+an easier installation process and use of our software on any
+operating system supported by Docker.
+
+Currently, we provide two approaches for installing HEASoft
+with Docker, both of which require that you have installed
+the Docker Engine (i.e. the Docker application or executable)
+available from
+
+   https://www.docker.com/products/docker-desktop
+
+and that you have it running.  Also note that older versions
+of Docker may not be compatible with some of the syntax used
+below, so it's a good idea to make sure your Docker application
+is up-to-date.
+
+The "docker" commands below require that in addition to having
+the Docker engine running, you should have the command-line
+"docker" executable available in your Unix PATH.  It typically
+installs as /usr/local/bin/docker, so either add /usr/local/bin
+to your PATH (and run "rehash"), or in the commands below
+replace "docker" with "/usr/local/bin/docker".
+
+Our two approaches are the following:
+
+1) A Dockerfile that retrieves a complete HEASoft source
+   code tar file and then creates an Ubuntu Linux container
+   into which all of HEASoft is installed.  To use this
+   approach, download this tar file:
+
+   https://heasarc.gsfc.nasa.gov/FTP/software/lheasoft/release/heasoft-6.30docker0.6.tar
+
+   Unpack it anywhere you choose, and then run "make":
+
+   $ tar xf heasoft-6.30docker0.6.tar
+   $ make
+     Or, if necessary:
+   $ sudo make
+
+
+2) For users who do not need all of HEASoft, the standard
+   "a la carte" tar files downloadable from
+
+   https://heasarc.gsfc.nasa.gov/lheasoft/download.html
+
+   now unpack with a Docker folder from which one can
+   install a container that includes only the packages
+   that were selected for inclusion.
+
+   Once you have downloaded and unpacked your HEASoft source
+   code, make sure that you have a GNU tar executable - for
+   example "gtar" "gnutar", or perhaps just "tar" - in your
+   PATH or else assigned to the TAR environment variable,
+   and then run "make" inside the Docker folder:
+
+   $ cd heasoft-6.30/Docker
+   $ make
+     Or, if necessary:
+   $ sudo make
+
+
+For either approach, note that you may need to run "sudo make"
+instead of just "make" if your docker executable requires root
+permission to run.  In either case, "make" will launch the
+appropriate set of commands to create and set up a new Ubuntu
+Linux container, and then configure, build, and install
+HEASoft inside the container.  This process may take a while
+depending on your hardware and which approach you selected.
+
+At first you will see some screen output from the various
+build commands, and you may eventually see a message that a
+"log limit" of 1MiB has been reached, but this is normal and
+does not imply that an error has occurred.
+
+When it has finished, you may open the container in Docker,
+using for example:
+
+ $ docker run --rm -it heasoft:v6.30 tcsh
+
+This command should provide you with an interactive docker
+prompt for the new container in a "T" C-shell, and place
+you in the /home/heasoft directory.
+
+Alternatively you may want to start up docker adding a
+volume from your host machine to the container, for example:
+
+ $ docker run --rm -it -v /Users/user1/data:/mydata heasoft:v6.30 tcsh
+
+This should mount the host directory "/Users/user1/data"
+inside the container as "/mydata".  More information about
+this and other Docker options can be found at their site:
+
+ https://docs.docker.com
+
+
+At this point you might run "fversion" to confirm that the
+installation is working,
+
+$ fversion
+
+or "fhelp" to get more information about a particular task
+or package, for example:
+
+$ fhelp heatools
+
+Note that the HEASARC CALDB has been set up in your
+environment using the "remote" setting:
+
+  CALDB=https://heasarc.gsfc.nasa.gov/FTP/caldb
+  CALDBCONFIG=/opt/heasoft/caldb/caldb.config
+  CALDBALIAS=/opt/heasoft/caldb/alias_config.fits
+
+Xspec users may add local models as desired in the standard way.
+
+Displays:
+=========
+
+To use GUI tasks (FV, etc.) or display plot windows from e.g.
+Xspec, modifications can be made to your X server connections.
+
+For example, on Mac hosts running XQuartz, open the XQuartz
+Preferences menu, and in the Security tab check the
+"Allow connections from network clients" box.  Then, quit
+XQuartz and restart it.  From a new X terminal run these
+commands to start up the container with an X connection:
+
+ $ /opt/X11/bin/xhost + 127.0.0.1
+ $ docker run --rm -it -e DISPLAY=host.docker.internal:0 heasoft:v6.30 tcsh
+
+For Linux hosts with X11 installed, start the container with:
+
+ $ docker run --rm -it -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:ro heasoft:v6.30 tcsh
+
+Then, in a separate terminal:
+
+ $ docker ps -l -q
+ $ xhost +local:<output from previous command>
+
+These two steps could alternatively be combined as:
+
+ $ xhost +local:`docker ps -l -q`
+
+Python, and editing the Dockerfiles:
+====================================
+
+PyXspec and the HEASP Python interface are both available,
+accessible by running python (which is python3 by default)
+and importing the relevant package.
+
+In the future, other Python packages may be installed by
+default as part of our Dockerfiles, but for now users
+are of course free to edit these files to suit their
+purposes.  For example, under the "HEASoft prerequisites"
+section, an Ubuntu 'apt-get' command installs a number
+of packages, and while you should not remove any of the
+existing prerequisites, the list may easily be added to,
+with (for example) some standard Python packages:
+
+        ...
+        ...
+        python3-astropy \
+        python3-astroquery \
+        python3-matplotlib \
+        python3-pandas \
+        python3-pip \
+        python3-pyvo \
+        python3-scipy \
+        ipython3 \
+        ...
+        ...
+
+Caution should be taken to ensure that proper Dockerfile
+syntax is preserved, particularly with the trailing
+back slashes "\" in the context mentioned above.
+
+===========================================================
+Preserving changes and cleaning up:
+===========================================================
+
+If you wish to preserve changes made to an existing image
+(or files created in the image that aren't on a shared
+volume), use the "docker commit" option.  For example:
+
+Before exiting the container you want to commit a change
+to, run the following in a separate terminal on your host
+machine:
+
+ $ docker ps -a
+ CONTAINER ID   IMAGE             COMMAND   CREATED          STATUS          PORTS     NAMES
+ 3faf5af4ac17   heasoft:v6.30     "tcsh"    8 days ago       Up 33 seconds             angry_bose
+
+Using the CONTAINER_ID, create a new image with a new name:
+
+ $ docker commit 3faf5af4ac17 heasoft_new
+
+Now "docker images" shows the new image:
+
+ $ docker images
+ REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+ heasoft_new  latest    d98eeb6e562d   44 seconds ago   12.5GB
+ heasoft      v6.30     274fc5d180ea   8 days ago       12.5GB
+
+To clean up, exit the running image and use the "IMAGE ID"
+to remove the older image:
+
+ $ docker rmi 274fc5d180ea
+
+Similarly, if you find it necessary to re-make an image
+for any reason, the old image will remain in the system
+(untagged) until you clean it up:
+
+ $ docker images clean
+
+Note that for the complete HEASoft distribution, 12.5GB
+of space is required, and that you may want to run
+
+ $ docker system df
+
+to check current usage.  To free up disk space, you may
+find it useful to occasionally "prune" various levels of
+the Docker system (e.g. "docker images prune" or "docker
+system prune").  For reference, please visit
+
+ https://docs.docker.com/config/pruning
+
+As always, the best reference for any Docker command is
+their website:
+
+ https://docs.docker.com/
