@@ -141,14 +141,17 @@ CMD [ "fversion" ]
 COPY test/ciao-install .
 COPY test/run_ciao.sh .
 
-RUN mkdir -p ./astro/spec_analysis/data
+#RUN mkdir -p ./home/heasoft/astro/spec_analysis/data
 
 COPY tools/ ./astro/spec_analysis/tools
 
-VOLUME data/ ./astro/spec_analysis/data
+VOLUME data/ ./home/heasoft/astro/spec_analysis/data
 
-CMD ["bash", "run_ciao.sh"]
+RUN chmod +x /run_ciao.sh
+CMD ["bash", "-c", "run_ciao.sh"; "bash"]
 
-RUN alias ciao="source ~/ciao-4.13/bin/ciao.sh"
+#RUN alias ciao="source ~/ciao-4.13/bin/ciao.sh"
 
-#docker run -it --rm -v /Users/david_kelly/spec_analysis/heasoft/data:/astro/spec_analysis/data test_heasoftciao bash, this will run but you'll have to install ciao once you're in
+#docker run -it --rm -v /Users/david_kelly/spec_analysis/heasoft/data:/astro/spec_analysis/data test_heasoftciao, will start the container in the desired state.
+
+#The volumes and directories were not found in the past as expected becasue I gave the path to put them in the root directoty, NOT the home directory created by the Heasoft installation.
