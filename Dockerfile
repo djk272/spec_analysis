@@ -1,4 +1,4 @@
-FROM heasoft:latest #pull from latest heasoft container
+FROM heasoft:latest 
 
 #RUN mkdir -p /usr/src/astro/spec_analysis/tools
 #RUN mkdir -p /usr/src/astro/spec_analysis/data
@@ -10,12 +10,11 @@ FROM heasoft:latest #pull from latest heasoft container
 #COPY ./tools .
 #COPY ./data .
 COPY requirements.txt .
-
-
+COPY wrapper.sh .
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN curl -sfL https://cxc.harvard.edu/cgi-gen/ciao/ciao415_install.cgi?standard=true | sh -
-
+CMD ./wrapper.sh
 #CMD ["bash", "/data_prep/data_prep.sh"]
 #CMD ["python", "./v2fits.py"]
 #CMD ["bash", "specextract"]
