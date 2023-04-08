@@ -1,7 +1,0 @@
-version: "3.9"
-services: #list ur docker services here
-  heasoft-ciao-service:
-    build: . #tell docker to build the heasoft-ciao dockerfile
-    restart: "no" #always
-    #volumes:
-     # - /Users/david_kelly/spec_analysis/heasoft/data:home/heasoft/astro/spec_analysis/data #map volume of host dir -> container dir
