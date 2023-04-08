@@ -3,6 +3,7 @@ IMAGE_VERSION = 0.0.0
 IMAGE_LABEL = v$(IMAGE_VERSION)
 
 DOCKER = docker
+SHELL = zsh
 
 .PHONY: build-heasoft
 build-heasoft:
@@ -26,8 +27,4 @@ run:
 
 .PHONY: clean
 clean:
-	rm -rf heasoft/ heasoft-*
-
-
-
-
+	rm -rf heasoft/ heasoft-6.31.1docker0.92.tar
