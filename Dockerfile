@@ -1,4 +1,4 @@
-FROM heasoft:latest 
+FROM heasoft:v6.31.1
 
 #RUN mkdir -p /usr/src/astro/spec_analysis/tools
 #RUN mkdir -p /usr/src/astro/spec_analysis/data
@@ -10,10 +10,14 @@ FROM heasoft:latest
 #COPY ./tools .
 #COPY ./data .
 COPY requirements.txt .
+COPY ciaoinstallrc .
+COPY scripts scripts
 COPY wrapper.sh .
+RUN sudo apt-get update && sudo apt-get install -y python3-pip curl
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN curl -sfL https://cxc.harvard.edu/cgi-gen/ciao/ciao415_install.cgi?standard=true | sh -
+RUN curl -sfL https://cxc.harvard.edu/cgi-gen/ciao/ciao415_install.cgi?standard=true > ciao_install && chmod +x ciao_install
+RUN CIAOINSTALLRC=/ciaoinstallrc ./ciao_install
 CMD ./wrapper.sh
 #CMD ["bash", "/data_prep/data_prep.sh"]
 #CMD ["python", "./v2fits.py"]
