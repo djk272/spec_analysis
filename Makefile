@@ -12,6 +12,7 @@ push_image: image
 
 prep_data:
 	echo "preparing data for analysis..."
+
 	# generate file with regix for flare.dat, prefix data dirs
 	#fl_lightcurve.sh
 	#fl_back7.sh
