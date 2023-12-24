@@ -1,4 +1,4 @@
-.PHONY: image prep_data push_image
+.PHONY: image prep_data push_image v2fits specextract xspec spectral_analysis
 CR := "docker"
 IMAGE_NAME := "spectral_analysis"
 IMAGE_TAG := "1.0.0"
@@ -7,7 +7,11 @@ IMAGE := $(IMAGE_NAME):$(IMAGE_TAG)
 image:
 	$(CR) build -t $(IMAGE) .
 
+push_image: image
+	$(CR) push -t $(IMAGE) .
+
 prep_data:
+	echo "preparing data for analysis..."
 	# generate file with regix for flare.dat, prefix data dirs
 	#fl_lightcurve.sh
 	#fl_back7.sh
@@ -20,5 +24,13 @@ prep_data:
 	#python fl_dmfilth.py
 	#bash fl_dmfilth.sh
 
-push_image:
-	$(CR) push -t $(IMAGE) .
+v2fits: prep_data
+	echo "running v2fits..."
+
+specextract:
+	echo "running specextract..."
+
+xspec:
+	echo "running xspec..."
+
+spectral_analysis: v2fits specextract xspec
