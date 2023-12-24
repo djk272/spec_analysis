@@ -37,17 +37,17 @@ SYS="Linux"
 # the DEF_* values are used.
 
 DEF_DL_DIR="`pwd`"       # Default Download Directory
-DL_DIR=""                # Download Directory
-CL_DL_DIR=""             # Set if directory given on command line
+DL_DIR="`pwd`"                # Download Directory
+CL_DL_DIR="`pwd`"             # Set if directory given on command line
 DEF_INS_DIR="${HOME}"    # Default Install Directory
-INS_DIR=""               # Install Directory
-CL_INS_DIR=""            # Set if directory given on command line
+INS_DIR="`pwd`"               # Install Directory
+CL_INS_DIR="`pwd`"            # Set if directory given on command line
 CALDB_DIR="CIAO"         # CALDB Directory
 DEF_RUN_SMOKE="y"        # run smoke tests after install
-RUN_SMOKE=""
+RUN_SMOKE="y"
 DEF_SYS="NONE"           # Default system
-SYSTEM=""                # System to install (Linux or macOS)
-BATCH="n"                # Batch mode (No prompts)
+SYSTEM="Linux"                # System to install (Linux or macOS)
+BATCH="y"                # Batch mode (No prompts)
 SILENT="n"               # Silent mode (No output Implies BATCH=y)
 CONTROL_FILE="ciao-control" # Control file name
 CONTROL_LOCATION="https://cxc.cfa.harvard.edu/ciao-install/ciao-4.13/all"
@@ -73,8 +73,8 @@ INSTALL_ONLY="n"         # Should we only install local file?
 NOCALDB="n"              # set to y if CALDB area exists but is not writable
 VERSION_STRING="ciao-install v1.23"
 
-DELETE_TAR="n"           # Delete tar files after install
-DEF_DELETE_TAR="n"       # Initial default for deleting tar files.
+DELETE_TAR="y"           # Delete tar files after install
+DEF_DELETE_TAR="y"       # Initial default for deleting tar files.
 
 MD5SUM=""                # Location of md5 sum tool
 MD5TYPE=""               # do we have md5 or md5sum
@@ -92,7 +92,7 @@ SYSERR="OK"
 USED_FILES=""            # list of temp files opened by function
 CIAO_NUM="4.13"          # Version number of CIAO
 CIAO_DIR="ciao-${CIAO_NUM}" # Base of CIAO from control file
-DL_LOC=""                # Download location (base web address)
+DL_LOC="${PWD}"                # Download location (base web address)
 RET=""                   # Generic function returns.
 
 OLD_CALDB_NAME="CALDB"   # Name of CALDB directory to copy from
