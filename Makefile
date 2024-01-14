@@ -14,6 +14,11 @@ prep_data:
 	echo "preparing data for analysis..."
 
 	# generate file with regix for flare.dat, prefix data dirs
+	#All scripts below (and flares.dat) should be located and 
+	#run from the same directory that holds the observation directories.
+
+	mv ~/
+
 	#fl_lightcurve.sh
 	#fl_back7.sh
 	#fl_fluximage_new.sh
