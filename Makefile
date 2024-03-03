@@ -19,8 +19,9 @@ prep_data:
 
 	bash write_to_flares.sh #list the names of the observation directors as individual rows in the file "flares.dat"
 
-	cp /home/heasoft/spec_analysis/data/* /home/heasoft/spec_analysis/data_prep #move obsv dirs to data_prep dir
+	cp -r /home/heasoft/spec_analysis/data/* /home/heasoft/spec_analysis/data_prep #copy obsv dirs to data_prep dir
 
+	#fl_cha_repro.sh
 	#fl_lightcurve.sh
 	#fl_back7.sh
 	#fl_fluximage_new.sh

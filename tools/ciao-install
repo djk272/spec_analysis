@@ -50,7 +50,7 @@ SYSTEM="Linux"                # System to install (Linux or macOS)
 BATCH="y"                # Batch mode (No prompts)
 SILENT="n"               # Silent mode (No output Implies BATCH=y)
 CONTROL_FILE="ciao-control" # Control file name
-CONTROL_LOCATION="https://cxc.cfa.harvard.edu/ciao-install/ciao-4.13/all"
+CONTROL_LOCATION="https://cxc.cfa.harvard.edu/ciao-install/ciao-4.12/all"
 CIAO_INSTALLED="ciao_installed" # installed file name
 
 TMPDIR="/tmp"            # Directory to write tmp files
@@ -90,7 +90,7 @@ REMOVE_SEG=""            # Force to not install segments list.
 
 SYSERR="OK"
 USED_FILES=""            # list of temp files opened by function
-CIAO_NUM="4.13"          # Version number of CIAO
+CIAO_NUM="4.12"          # Version number of CIAO
 CIAO_DIR="ciao-${CIAO_NUM}" # Base of CIAO from control file
 DL_LOC="${PWD}"                # Download location (base web address)
 RET=""                   # Generic function returns.
