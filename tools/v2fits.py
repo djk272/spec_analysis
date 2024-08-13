@@ -48,7 +48,7 @@ specex_filename = "spec"
 file_ext = ".reg"
 specex_ext = ".sh"
 filepath = os.getcwd() 
-data_path = "/usr/src/astro/spec_analysis/data/"
+data_path = "/home/heasoft/spec_analysis/data/"
 
 ##-- Circle Stuff --##
 
