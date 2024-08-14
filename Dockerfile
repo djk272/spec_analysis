@@ -2,6 +2,7 @@ FROM fjebaker/heasoft:6.32.1-amd64
 # dustpancake/heasoft:6.30.1-aarch64
 RUN mkdir spec_analysis/
 WORKDIR spec_analysis/
+RUN mkdir data/out/
 COPY --chown=heasoft ./entrypoint.sh .
 COPY --chown=heasoft ./tools .
 COPY --chown=heasoft requirements.txt .
