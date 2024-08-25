@@ -1,13 +1,14 @@
 FROM fjebaker/heasoft:6.32.1-amd64
 # dustpancake/heasoft:6.30.1-aarch64
+
 RUN mkdir spec_analysis/
 WORKDIR spec_analysis/
-RUN mkdir data/out/
 COPY --chown=heasoft ./entrypoint.sh .
 COPY --chown=heasoft ./tools .
 COPY --chown=heasoft requirements.txt .
 RUN ./ciao-install #installing CIAO
 
+#Building Funtools
 #WORKDIR spec_analysis/tools/funtools/
 #RUN ./configure  #installing FUNTOOLS site-specific configuration
 #RUN make			# build the software
@@ -15,9 +16,10 @@ RUN ./ciao-install #installing CIAO
 #RUN make clean		# clean up unneeded temp files
 #WORKDIR spec_analysis/
 
-#RUN pip install --upgrade pip
-#RUN pip install -r requirements.txt
-ENTRYPOINT ["./entrypoint.sh"]
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+#ENTRYPOINT ./entrypoint.sh
 
 ##For every change to this file you must 
 #docker rm --force <ContainerName>

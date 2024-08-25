@@ -7,39 +7,43 @@ IMAGE := $(IMAGE_NAME):$(IMAGE_TAG)
 image:
 	$(CR) build -t $(IMAGE) .
 
-push_image: image
-	$(CR) push -t $(IMAGE) .
+run: image
+	docker run -v /Users/davidkelly/spec_analysis/data:/home/heasoft/spec_analysis/data -it $(IMAGE) tcsh
+# push_image: image
+# 	$(CR) push -t $(IMAGE) .
 
-prep_data:
-	echo "preparing data for analysis..."
+# prep_data: image
+# 	echo "preparing data for analysis..."
 
-	# generate file with regix for flare.dat, prefix data dirs
-	#All scripts below (and flares.dat) should be located and 
-	#run from the same directory that holds the observation directories.
+# 	# generate file with regix for flare.dat, prefix data dirs
+# 	#All scripts below (and flares.dat) should be located and 
+# 	#run from the same directory that holds the observation directories.
 
-	bash write_to_flares.sh #list the names of the observation directors as individual rows in the file "flares.dat"
+# 	echo "list the names of the observation directors as individual rows in the file flares.dat"
+# 	bash write_to_flares.sh #list the names of the observation directors as individual rows in the file "flares.dat"
 
-	cp -r /home/heasoft/spec_analysis/data/* /home/heasoft/spec_analysis/data_prep #copy obsv dirs to data_prep dir
+# 	echo "copy obsv dirs to data_prep dir"
+# 	cp -r /home/heasoft/spec_analysis/data/* /home/heasoft/spec_analysis/data_prep #copy obsv dirs to data_prep dir
 
-	#fl_cha_repro.sh
-	#fl_lightcurve.sh
-	#fl_back7.sh
-	#fl_fluximage_new.sh
-	#fl_bkchipreg77.sh
-	#fl_fluximage_ccd_hard.sh    
-	#fl_hard_cornorm.sh
-	#fl_imgall_new.sh
-	#fl_wavedetect_new.sh
+	#bash fl_cha_repro.sh
+	#bash fl_lightcurve.sh
+	#bash fl_back7.sh
+	#bash fl_fluximage_new.sh
+	#bash fl_bkchipreg77.sh
+	#bash fl_fluximage_ccd_hard.sh
+	#bash fl_hard_cornorm.sh
+	#bash fl_imgall_new.sh
+	#bash fl_wavedetect_new.sh
 	#python fl_dmfilth.py
 	#bash fl_dmfilth.sh
 
-v2fits: prep_data
-	echo "running v2fits..."
+# v2fits: prep_data
+# 	echo "running v2fits..."
 
-specextract:
-	echo "running specextract..."
+# specextract:
+# 	echo "running specextract..."
 
-xspec:
-	echo "running xspec..."
+# xspec:
+# 	echo "running xspec..."
 
-spectral_analysis: v2fits specextract xspec
+# spectral_analysis: v2fits specextract xspec
