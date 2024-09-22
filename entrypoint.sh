@@ -18,31 +18,33 @@ cp -r /home/heasoft/spec_analysis/data/* /home/heasoft/spec_analysis/data_prep #
 echo "done"
 
 echo "Starting CIAO.."
-source ~/spec_analysis/ciao-4.12/bin/ciao.csh #source isn't working with entrypoint
+. ~/spec_analysis/ciao-4.12/bin/ciao.sh
+echo "done"
 
 echo "Going to data_prep"
 cd data_prep
+echo "done"
 
 echo "Running fl_cha_repro.sh ..."
 bash fl_cha_repro.sh
 echo "done"
 
-echo "Running "
+echo "Running fl_lightcurve.sh ..."
 bash fl_lightcurve.sh
 echo "done"
 
-echo "Running "
+echo "Running fl_back7.sh ..."
 bash fl_back7.sh
 echo "done"
 
-echo "Running "
+echo "Running fl_fluximage_new.sh ..."
 bash fl_fluximage_new.sh
 echo "done"
 
-echo "Running "
+echo "Running fl_bkchipreg77.sh ..."
 bash fl_bkchipreg77.sh
 echo "done"
 
-echo "Running "
+echo "Running fl_fluximage_ccd_hard.sh ..."
 bash fl_fluximage_ccd_hard.sh
 echo "done"

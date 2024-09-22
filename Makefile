@@ -8,7 +8,7 @@ image:
 	$(CR) build -t $(IMAGE) .
 
 run: image
-	docker run -v /Users/davidkelly/spec_analysis/data:/home/heasoft/spec_analysis/data -it $(IMAGE) tcsh
+	docker run -v /Users/davidkelly/spec_analysis/data:/home/heasoft/spec_analysis/data -it spectral_analysis:1.0.0 sh
 # push_image: image
 # 	$(CR) push -t $(IMAGE) .
 
