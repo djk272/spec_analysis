@@ -5,10 +5,10 @@ IMAGE_TAG := "1.0.0"
 IMAGE := $(IMAGE_NAME):$(IMAGE_TAG)
 
 image:
-	$(CR) build -t $(IMAGE) .
+	$(CR) build --platform linux/amd64 -t $(IMAGE) .
 
 run: image
-	docker run -v /Users/davidkelly/spec_analysis/data:/home/heasoft/spec_analysis/data -it $(IMAGE) sh
+	docker run --platform linux/amd64 -v /Users/davidkelly/spec_analysis/data:/home/heasoft/spec_analysis/data $(IMAGE) sh
 # push_image: image
 # 	$(CR) push -t $(IMAGE) .
 

@@ -9,7 +9,7 @@ echo "preparing data for analysis..."
 	#run from the same directory that holds the observation directories.
 
 
-echo "list the names of the observation directors as individual rows in the file flares.dat..."
+echo "list the names of the observation directories as individual rows in the file flares.dat..."
 bash write_to_flares.sh #list the names of the observation directors as individual rows in the file "flares.dat"
 echo "DONE"
 
@@ -17,11 +17,21 @@ echo "copy obsv dirs to data_prep dir..."
 cp -r /home/heasoft/spec_analysis/data/* /home/heasoft/spec_analysis/data_prep #copy obsv dirs to data_prep dir
 echo "DONE"
 
+echo "python version before ciao..."
+python -V
+
 echo "Starting CIAO..."
 . ~/spec_analysis/ciao-4.12/bin/ciao.sh
 echo "DONE"
 
-echo "Going to data_prep.."
+echo "running pip install..."
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+echo "python version after ciao..."
+python -V
+
+echo "Going to data_prep ..."
 cd data_prep
 echo "DONE"
 
@@ -62,14 +72,15 @@ bash fl_wavedetect_new.sh
 echo "DONE"
 
 echo "Running fl_dmfilth.py ..."
-python3 fl_dmfilth.py
+python fl_dmfilth.py
 echo "DONE"
 
 echo "Running fl_dmfilth.sh ..."
 bash fl_dmfilth.sh
 echo "DONE"
 
-#change dir to run v2fits.py
+echo "python version right before v2fits..."
+python -V
 
 echo "running v2fits..."
 python3 v2fits.py

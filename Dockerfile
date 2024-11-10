@@ -16,10 +16,11 @@ RUN ./ciao-install #installing CIAO
 #RUN make clean		# clean up unneeded temp files
 #WORKDIR spec_analysis/
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
 
-ENTRYPOINT ./entrypoint.sh
+RUN python -m pip install --upgrade pip
+RUN python -m pip install -r requirements.txt
+
+ENTRYPOINT exec ./entrypoint.sh
 
 ##For every change to this file you must 
 #docker rm --force <ContainerName>
