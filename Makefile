@@ -5,10 +5,10 @@ IMAGE_TAG := "1.0.0"
 IMAGE := $(IMAGE_NAME):$(IMAGE_TAG)
 
 image:
-	$(CR) build --platform linux/amd64 -t $(IMAGE) .
+	$(CR) build --platform linux/amd64 -t $(IMAGE) . #If you are building an image on your M1 Mac to be used on Linux then use the --platform linux/amd64 to build a version for Intel chips
 
 run: image
-	docker run --platform linux/amd64 -v /Users/davidkelly/spec_analysis/data:/home/heasoft/spec_analysis/data $(IMAGE) sh
+	docker run --platform linux/amd64 -v /Users/davidkelly/spec_analysis/data:/home/heasoft/spec_analysis/data -it $(IMAGE) sh
 # push_image: image
 # 	$(CR) push -t $(IMAGE) .
 
