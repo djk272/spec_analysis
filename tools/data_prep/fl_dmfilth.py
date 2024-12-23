@@ -21,9 +21,9 @@ obs  = np.loadtxt("flares.dat",dtype="str",skiprows=0)
 print(obs[0])
 
 
-for j in range (0,40):
+for j in range (0,5):
 
-	os.chdir("/Users/edmund/clusters/"+str(obs[j])+"/repro/flux/")
+	os.chdir("/home/heasoft/spec_analysis/data_prep/"+str(obs[j])+"/repro/flux/") #os.chdir("/Users/edmund/clusters/"+str(obs[j])+"/repro/flux/")
 
 	dataR  = np.loadtxt(str(obs[j])+"_src.reg",dtype="str",delimiter=",",skiprows=0)
 	x0=dataR[:,0]
