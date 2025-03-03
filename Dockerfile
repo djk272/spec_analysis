@@ -26,6 +26,6 @@ RUN python -m pip install -r requirements.txt
 #docker rm --force <ContainerName>
 #Make (rebuilds image to reflect changes)
 
-#to run lastest docker img with mounted volume: docker run -v /Users/davidkelly/spec_analysis/data:/home/heasoft/spec_analysis/data -it spectral_analysis:1.0.0 sh
+#to run lastest docker img with mounted volume: docker run -v ~/spec_analysis/data:/home/heasoft/spec_analysis/data -it spectral_analysis:1.0.0 sh
 
 #to start running Ciao: . ~/spec_analysis/ciao-4.12/bin/ciao.sh

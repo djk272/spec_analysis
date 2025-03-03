@@ -4,11 +4,6 @@ exec "$@"
 
 echo "preparing data for analysis..."
 
-	# generate file with regix for flare.dat, prefix data dirs
-	#All scripts below (and flares.dat) should be located and 
-	#run from the same directory that holds the observation directories.
-
-
 echo "list the names of the observation directories as individual rows in the file flares.dat..."
 bash write_to_flares.sh #list the names of the observation directors as individual rows in the file "flares.dat"
 echo "DONE"
