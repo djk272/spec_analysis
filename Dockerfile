@@ -20,7 +20,7 @@ RUN ./ciao-install #installing CIAO
 RUN python -m pip install --upgrade pip
 RUN python -m pip install -r requirements.txt
 
-#ENTRYPOINT exec ./entrypoint.sh
+ENTRYPOINT exec ./entrypoint.sh
 
 ##For every change to this file you must 
 #docker rm --force <ContainerName>
