@@ -3,7 +3,9 @@ Spectral analysis of galaxy clusters
 
 ## Abstract
 
-This is the automation of analyzing multiple spectra of galaxy clusters from X-ray observations made by the Chandra X-Ray Observatory.
+This is the automation of analyzing multiple spectra of galaxy clusters from X-ray observations made by the Chandra X-Ray Observatory. 
+
+To best utilize the software needed to analyze x-ray spectra, CIAO from the Chandra X-Ray Observatory, and HEASoft from NASA have been combined into Docker containers. This removes the difficulty of installing and configuring the software, facilitates repeatability, stability of results, allows the full analysis pipline to be agnostic of the host machine, and allows it to be run on a compute cluster if needed.
 
 ## Quickstart
 
