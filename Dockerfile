@@ -6,7 +6,8 @@ WORKDIR spec_analysis/
 COPY --chown=heasoft ./entrypoint.sh .
 COPY --chown=heasoft ./tools .
 COPY --chown=heasoft requirements.txt .
-RUN ./ciao-install #installing CIAO
+COPY --chown=heasoft caldb_4.10.7_main.tar.gz .
+#RUN ./ciao-install #installing CIAO
 
 #Building Funtools
 #WORKDIR spec_analysis/tools/funtools/

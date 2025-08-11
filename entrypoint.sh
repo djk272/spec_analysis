@@ -4,6 +4,14 @@ exec "$@"
 
 echo "preparing data for analysis..."
 
+echo "untar ciao..."
+tar -xvf caldb_4.10.7_main.tar.gz
+echo "DONE"
+
+echo "installing CIAO..."
+bash ./ciao-install --link-caldb /home/heasoft/spec_analysis
+echo "DONE"
+
 echo "list the names of the observation directories as individual rows in the file flares.dat..."
 bash write_to_flares.sh #list the names of the observation directors as individual rows in the file "flares.dat"
 echo "DONE"
